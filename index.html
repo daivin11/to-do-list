@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
+    <title>Lista de Tarefas</title>
+  </head>
+  <body>
+
+    <div class="container">
+    <h1>📝 Minha Lista de Tarefas</h1>
+    <p>organize suas tarefas do dia</p>
+
+    <div class="filters">
+      <button data-filter="all">Todas</button>
+      <button data-filter="pending">Pendentes</button>
+      <button data-filter="completed">Concluídas</button>
+    </div>
+
+    <div class="input-area">
+      <input
+        type="text"
+        id="Input"
+        placeholder="Adicione uma nova tarefa..."
+        />
+      <button id="addButton">Adicionar Tarefa</button>
+    </div>
+
+    <ul id="toList">
+      <!-- As tarefas serão adicionadas aqui -->
+    </ul>
+
+    <div class="footer">
+  <span id="taskLeft">0 tarefas restantes</span>
+</div>
+
+    </div>
+
+    
+    <script src="script.js"></script>
+
+  </body>
+</html>

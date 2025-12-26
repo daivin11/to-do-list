@@ -27,15 +27,19 @@ function renderTasks() {
 
     li.addEventListener("click", () => {
       task.completed = !task.completed;
+      saveTasks();
       renderTasks();
+        
     });
 
-    updateTasksLeft();
+  
 
 
     list.appendChild(li);
   });
+  updateTasksLeft();
 }
+
 
 function addTask() {
   const tasktext = input.value.trim();
@@ -46,6 +50,7 @@ function addTask() {
       completed: false,
     };
     tasks.push(task);
+    saveTasks();
     renderTasks();
     input.value = "";
   }
@@ -69,5 +74,17 @@ button.addEventListener("click", addTask);
 
 
 
+function saveTasks() {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
 
+function loadTasks() {
+  const savedTasks = localStorage.getItem("tasks");
+  if (savedTasks) {
+    tasks = JSON.parse(savedTasks);
+    renderTasks();
+  }
+}
 
+loadTasks();  
+renderTasks();

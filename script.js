@@ -10,7 +10,6 @@ let filter = "all"; // all, completed, pending
 function renderTasks() {
   list.innerHTML = "";
 
- 
   const filteredTasks = tasks.filter(task => {
     if (filter === "all") return true;
     if (filter === "pending") return !task.completed;
@@ -19,26 +18,38 @@ function renderTasks() {
 
   filteredTasks.forEach(task => {
     const li = document.createElement("li");
-    li.textContent = task.text;
+
+    const span = document.createElement("span");
+    span.textContent = task.text;
 
     if (task.completed) {
-      li.classList.add("completed");
+      span.classList.add("completed");
     }
 
-    li.addEventListener("click", () => {
+    span.addEventListener("click", () => {
       task.completed = !task.completed;
       saveTasks();
       renderTasks();
-        
     });
 
-  
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "🗑";
 
+    deleteBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      tasks = tasks.filter(t => t.id !== task.id);
+      saveTasks();
+      renderTasks();
+    });
 
+    li.appendChild(span);
+    li.appendChild(deleteBtn);
     list.appendChild(li);
   });
+
   updateTasksLeft();
 }
+
 
 
 function addTask() {
